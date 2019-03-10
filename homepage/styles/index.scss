@@ -1,0 +1,18 @@
+$side_col_width : 200px;
+main {
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+    #site_left{
+        background-color: green;
+    }
+
+    #site_center{
+        background-color: orangered;
+    }
+
+    #site_right{
+        background-color: purple;
+    }
+}

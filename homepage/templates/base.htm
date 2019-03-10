@@ -1,0 +1,84 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+<%!import datetime %>
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <head>
+
+        <title>Sprint 1 &ndash; <%block name="title"></%block></title>
+
+        ## add any site-wide scripts or CSS here; for example, jquery:
+        <script src="${ STATIC_URL }homepage/media/jquery-3.3.1.js"></script>
+        <script src="${ STATIC_URL }homepage/media/bootstrap.bundle.js"></script>
+        <script src="${ STATIC_URL }homepage/media/popper.min.js"></script>
+        <link rel="stylesheet" href="${ STATIC_URL }homepage/media/bootstrap.css">
+
+        ## render the static file links with the same name as this template
+        <script src="/django_mako_plus/dmp-common.min.js"></script>
+        <!--this command put everything back together: base.css, base.js which are in a different folder, just to keep the code clean -->
+        ${ django_mako_plus.links(self) }
+        <link rel="icon" href="${ STATIC_URL }homepage/media/python.png">
+
+    </head>
+    <body>
+        <div id="maintenance_message" class="alert alert-danger hidden">
+            <%block name="header_maintenance"></%block>
+        </div>
+        <header id="header">         
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <img src="${ STATIC_URL }homepage/media/python.png" alt="python" width="40" height="40"/>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-4">
+                            <li class="nav-item ${ 'active' if request.dmp.page == 'index' else '' }"><a class="nav-link" href="/">Home</a></li>
+                            <li class="nav-item ${ 'active' if request.dmp.page == 'contact' else '' }"><a class="nav-link" href="/contact">Contact</a></li>
+                            <li class="nav-item ${ 'active' if request.dmp.page == 'about' else '' }"><a class="nav-link" href="#">About</a></li>
+                            <%block name="menu">
+                            <li class="nav-item"><a class="nav-link" href="#">OverrideMe</a></li>
+                            </%block>
+                            % if request.user.is_authenticated:
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Welcome. User
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Account</a>
+                                    <a class="dropdown-item" href="#">Porfile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/account/logout">LogOut</a>
+                                    </div>
+                                </li>
+                            % else:
+                                <li class="nav-item"><a class="nav-link" href="/account/login/">Login</a></li>
+                            % endif
+                        </ul>
+                    </div>
+                </nav>
+        </header>
+
+        <main>
+            <div id="site_left">
+                <%block name="site_left">
+                    <p>something i dont need</p>
+                </%block>
+            </div>
+            <div id="site_center">
+                <%block name="site_center">
+                </%block>
+            </div>
+            <div id="site_right">
+                <%block name="site_right">
+                </%block>
+            </div>
+        </main>
+
+        <footer>
+            <br>
+            <div class="center_text">&copy;Copyright ${ datetime.datetime.today().year}. All rights reserved</div>
+        </footer>
+
+    </body>
+</html>
+<%! import datetime %>
