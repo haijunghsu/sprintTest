@@ -1,0 +1,17 @@
+<%inherit file="app_base.htm" />
+
+<%block name="site_center">
+    <h1 class="text-center">Products</h1>
+
+        <div id="catalog" class="center-div">
+        
+            <div class="product-tile">
+                <div class="product-image"><img class="tile-image" src="${ STATIC_URL }${ product.image_url() }"></img></div>
+                <div class="product-name">${ product.name }</div>
+                <div class="product-price">$${ product.price }</div>
+                <div class="product-name">${ product.description }</div>
+            </div>
+
+        </div>
+
+</%block>

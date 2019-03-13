@@ -36,8 +36,6 @@ header img {
     right:400px;
     left:400px;
     text-align:center;
-
-
  }
 
 $side_col_width : 200px;
@@ -52,7 +50,7 @@ main {
         top: 0;
         width: $side_col_width;
         height: 800px;
-        background-color: green;
+        background-color: darkgreen;
     }
 
     #site_center{

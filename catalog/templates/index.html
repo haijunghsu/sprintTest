@@ -1,8 +1,16 @@
-<%inherit file="base.htm" />
+<%inherit file="app_base.htm" />
 
-<%block name="content">
-    <div class="content">
-        <h3>Congratulations -- you've successfully created a new DMP app!</h3>
-        <h4 class="utc-time">Current time in UTC: ${ utc_time }</h4>
-    </div>
+<%block name="site_center">
+    <h1 class="text-center">Products</h1>
+
+        <div id="catalog" class="center-div">
+
+            %for product in products:
+                ## <div class="col-md-4">
+                    <span class="product-container" data-product-id="${ product.id }"></span>
+                ## </div>
+            %endfor
+
+        </div>
+
 </%block>

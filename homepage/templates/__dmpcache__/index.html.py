@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1551238177.1778219
+_modified_time = 1552276379.436706
 _enable_loop = True
 _template_filename = 'C:/Users/PC/sprint1/homepage/templates/index.html'
 _template_uri = 'index.html'
@@ -30,18 +30,18 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def site_right():
-            return render_site_right(context._locals(__M_locals))
-        def header_maintenance():
-            return render_header_maintenance(context._locals(__M_locals))
-        def menu():
-            return render_menu(context._locals(__M_locals))
         def title():
             return render_title(context._locals(__M_locals))
+        def menu():
+            return render_menu(context._locals(__M_locals))
         def site_left():
             return render_site_left(context._locals(__M_locals))
+        def site_right():
+            return render_site_right(context._locals(__M_locals))
         def site_center():
             return render_site_center(context._locals(__M_locals))
+        def header_maintenance():
+            return render_header_maintenance(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\r\n<script src="/django_mako_plus/dmp-common.min.js"></script>\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
@@ -145,7 +145,7 @@ def render_site_right(context,**pageargs):
         def site_right():
             return render_site_right(context)
         __M_writer = context.writer()
-        __M_writer('\r\n    jfdisoaspfjdspofjdoispaj\r\n    Nostrud ut ut elit exercitation minim occaecat non magna sunt.\r\n')
+        __M_writer('\r\n    jfdisoaspfjdspofjdoispaj\r\n    <div></div>\r\n    <div></div><div>asdfsdafdasfasfd</div>\r\n    Nostrud ut ut elit exercitation minim occaecat non magna sunt.\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -153,6 +153,6 @@ def render_site_right(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/PC/sprint1/homepage/templates/index.html", "uri": "index.html", "source_encoding": "utf-8", "line_map": {"29": 0, "46": 1, "51": 3, "56": 5, "61": 9, "66": 13, "71": 16, "76": 20, "82": 3, "88": 3, "94": 5, "100": 5, "106": 7, "112": 7, "118": 11, "124": 11, "130": 14, "136": 14, "142": 17, "148": 17, "154": 148}}
+{"filename": "C:/Users/PC/sprint1/homepage/templates/index.html", "uri": "index.html", "source_encoding": "utf-8", "line_map": {"29": 0, "46": 1, "51": 3, "56": 5, "61": 9, "66": 13, "71": 16, "76": 22, "82": 3, "88": 3, "94": 5, "100": 5, "106": 7, "112": 7, "118": 11, "124": 11, "130": 14, "136": 14, "142": 17, "148": 17, "154": 148}}
 __M_END_METADATA
 """

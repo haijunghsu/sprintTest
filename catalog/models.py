@@ -26,7 +26,7 @@ class Product(models.Model):
             urls.append(p.image_url())
         
         if len(urls) == 0: 
-            return('settings.STATIC_URL' + 'catalog/media/products/' + 'notfound.jpg')
+            return('catalog/media/products/notfound.jpg')
         else:
             return urls
 
@@ -35,4 +35,4 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
 
     def image_url(self): #check
-        return('settings.STATIC_URL' + 'catalog/media/products/' + self.filename)
+        return('catalog/media/products/' + self.filename)
