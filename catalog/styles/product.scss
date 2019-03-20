@@ -4,8 +4,8 @@
 }
 
 .product-tile{
-    height: 250px;
-    width: 200px;
+    height: 375px;
+    width: 300px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     background-color: lightgray;
@@ -20,6 +20,11 @@
     color: black;
 }
 .tile-image{
-    height: 200px;
-    widows: 200px;
+    height: 300px;
+    widows: 300px;
+}
+
+.small-image{
+    height: 100px;
+    widows: 100px;
 }

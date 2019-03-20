@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1552435566.63818
+_modified_time = 1552493909.8648205
 _enable_loop = True
 _template_filename = 'C:/Users/PC/sprint1/catalog/templates/product.html'
 _template_uri = 'product.html'
@@ -30,10 +30,10 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        product = context.get('product', UNDEFINED)
         def site_center():
             return render_site_center(context._locals(__M_locals))
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        product = context.get('product', UNDEFINED)
         self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n')
@@ -50,10 +50,10 @@ def render_body(context,**pageargs):
 def render_site_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        product = context.get('product', UNDEFINED)
         def site_center():
             return render_site_center(context)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        product = context.get('product', UNDEFINED)
         self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n    <h1 class="text-center">Products</h1>\r\n\r\n        <div id="catalog" class="center-div">\r\n        \r\n            <div class="product-tile">\r\n                <div class="product-image"><img class="tile-image" src="')
@@ -65,7 +65,13 @@ def render_site_center(context,**pageargs):
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( product.price ))
         __M_writer('</div>\r\n                <div class="product-name">')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( product.description ))
-        __M_writer('</div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n')
+        __M_writer('</div>\r\n            </div>\r\n            <div>\r\n')
+        for url in product.image_urls():
+            __M_writer('                    <img class="small-image" src="')
+            __M_writer(django_mako_plus.ExpressionPostProcessor(self)( STATIC_URL ))
+            __M_writer(django_mako_plus.ExpressionPostProcessor(self)( url ))
+            __M_writer('"></img>\r\n')
+        __M_writer('            </div>\r\n\r\n        </div>\r\n\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -73,6 +79,6 @@ def render_site_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/PC/sprint1/catalog/templates/product.html", "uri": "product.html", "source_encoding": "utf-8", "line_map": {"29": 0, "39": 1, "44": 17, "50": 3, "59": 3, "60": 9, "61": 9, "62": 9, "63": 10, "64": 10, "65": 11, "66": 11, "67": 12, "68": 12, "74": 68}}
+{"filename": "C:/Users/PC/sprint1/catalog/templates/product.html", "uri": "product.html", "source_encoding": "utf-8", "line_map": {"29": 0, "39": 1, "44": 22, "50": 3, "59": 3, "60": 9, "61": 9, "62": 9, "63": 10, "64": 10, "65": 11, "66": 11, "67": 12, "68": 12, "69": 15, "70": 16, "71": 16, "72": 16, "73": 16, "74": 18, "80": 74}}
 __M_END_METADATA
 """

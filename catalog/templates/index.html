@@ -4,13 +4,40 @@
     <h1 class="text-center">Products</h1>
 
         <div id="catalog" class="center-div">
-
+            ## %if category is None:
+            ##     category_id = '-'
+            ## %else:  
+            ##     category_id = category.id
+            ## %endif
             %for product in products:
-                ## <div class="col-md-4">
-                    <span class="product-container" data-product-id="${ product.id }"></span>
-                ## </div>
+                <span class="product-container" data-product-id="${ product.id }"></span>
             %endfor
+            %if category is not None:
+                %if page == 1: 
+                    <a class="button disabled" href="/catalog/index/${category.id}/${page}">Previous </a>
+                %else:
+                    <a class="button" href="/catalog/index/${category.id}/${page - 1}">Previous </a>
+                %endif
 
+                %if page == numpages:
+                    <a class="button disabled" href="/catalog/index/${category.id}/${page}">Next </a>
+                %else:
+                    <a class="button" href="/catalog/index/${category.id}/${page + 1}">Next </a>
+                %endif
+            %else:
+                %if page == 1: 
+                    <a class="button disabled" href="/catalog/index/0/${page}">Previous </a>
+                %else:
+                    <a class="button" href="/catalog/index/0/${page - 1}">Previous </a>
+                %endif
+
+                %if page == numpages:
+                    <a class="button disabled" href="/catalog/index/0/${page}">Next </a>
+                %else:
+                    <a class="button" href="/catalog/index/0/${page + 1}">Next </a>
+                %endif
+            %endif
+            ## <a href="/catalog/index/${category.id}/${page + 1}"> Next</a>
         </div>
 
 </%block>

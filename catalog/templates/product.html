@@ -11,6 +11,11 @@
                 <div class="product-price">$${ product.price }</div>
                 <div class="product-name">${ product.description }</div>
             </div>
+            <div>
+                %for url in product.image_urls():
+                    <img class="small-image" src="${ STATIC_URL }${ url }"></img>
+                %endfor
+            </div>
 
         </div>
 

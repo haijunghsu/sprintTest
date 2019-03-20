@@ -4,7 +4,12 @@
 </%block>
 
 <%block name="site_left">
-    <ul>
+    <ul>            
+        <li>
+            <a href="/catalog/index/0/">
+                All Products
+            </a>
+        </li>
         %for category in categories:
             <li>
                 <a href="/catalog/index/${category.id}">

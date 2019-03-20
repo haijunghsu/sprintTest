@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1552266222.0804453
+_modified_time = 1552535652.1710157
 _enable_loop = True
 _template_filename = 'C:/Users/PC/sprint1/catalog/templates/app_base.htm'
 _template_uri = 'app_base.htm'
@@ -30,12 +30,12 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def site_left():
-            return render_site_left(context._locals(__M_locals))
-        categories = context.get('categories', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         def menu():
             return render_menu(context._locals(__M_locals))
+        self = context.get('self', UNDEFINED)
+        categories = context.get('categories', UNDEFINED)
+        def site_left():
+            return render_site_left(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'menu'):
@@ -67,12 +67,12 @@ def render_menu(context,**pageargs):
 def render_site_left(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        self = context.get('self', UNDEFINED)
+        categories = context.get('categories', UNDEFINED)
         def site_left():
             return render_site_left(context)
-        categories = context.get('categories', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n    <ul>\r\n')
+        __M_writer('\r\n    <ul>            \r\n        <li>\r\n            <a href="/catalog/index/0/">\r\n                All Products\r\n            </a>\r\n        </li>\r\n')
         for category in categories:
             __M_writer('            <li>\r\n                <a href="/catalog/index/')
             __M_writer(django_mako_plus.ExpressionPostProcessor(self)(category.id))
@@ -86,6 +86,6 @@ def render_site_left(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/PC/sprint1/catalog/templates/app_base.htm", "uri": "app_base.htm", "source_encoding": "utf-8", "line_map": {"29": 0, "40": 1, "45": 4, "55": 2, "61": 2, "67": 6, "75": 6, "76": 8, "77": 9, "78": 10, "79": 10, "80": 11, "81": 11, "87": 81}}
+{"filename": "C:/Users/PC/sprint1/catalog/templates/app_base.htm", "uri": "app_base.htm", "source_encoding": "utf-8", "line_map": {"29": 0, "40": 1, "45": 4, "55": 2, "61": 2, "67": 6, "75": 6, "76": 13, "77": 14, "78": 15, "79": 15, "80": 16, "81": 16, "87": 81}}
 __M_END_METADATA
 """
