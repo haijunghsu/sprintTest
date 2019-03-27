@@ -5,10 +5,10 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1551244680.2461977
+_modified_time = 1553646812.8091784
 _enable_loop = True
 _template_filename = 'C:/Users/PC/sprint1/homepage/templates/base.htm'
-_template_uri = 'homepage/templates/base.htm'
+_template_uri = '/homepage/templates/base.htm'
 _source_encoding = 'utf-8'
 import django_mako_plus
 import django.utils.html
@@ -23,21 +23,21 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        request = context.get('request', UNDEFINED)
         def title():
             return render_title(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
+        self = context.get('self', UNDEFINED)
         def menu():
             return render_menu(context._locals(__M_locals))
-        def header_maintenance():
-            return render_header_maintenance(context._locals(__M_locals))
         def site_right():
             return render_site_right(context._locals(__M_locals))
-        def site_center():
-            return render_site_center(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def site_left():
             return render_site_left(context._locals(__M_locals))
-        self = context.get('self', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def site_center():
+            return render_site_center(context._locals(__M_locals))
+        def header_maintenance():
+            return render_header_maintenance(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\r\n<!DOCTYPE html>\r\n<html>\r\n    <meta charset="UTF-8">\r\n    <head>\r\n\r\n        <title>Sprint 1 &ndash; ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
@@ -177,6 +177,6 @@ def render_site_right(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/PC/sprint1/homepage/templates/base.htm", "uri": "homepage/templates/base.htm", "source_encoding": "utf-8", "line_map": {"18": 2, "20": 84, "22": 0, "42": 2, "47": 8, "48": 11, "49": 11, "50": 11, "51": 12, "52": 12, "53": 13, "54": 13, "55": 14, "56": 14, "57": 17, "58": 19, "59": 19, "60": 20, "61": 20, "66": 25, "67": 29, "68": 29, "69": 35, "70": 35, "71": 36, "72": 36, "73": 37, "74": 37, "79": 40, "80": 41, "81": 42, "82": 53, "83": 54, "84": 56, "89": 65, "94": 69, "99": 73, "100": 79, "101": 79, "102": 84, "108": 8, "119": 25, "130": 38, "136": 38, "142": 63, "148": 63, "154": 68, "160": 68, "166": 72, "172": 72, "178": 172}}
+{"filename": "C:/Users/PC/sprint1/homepage/templates/base.htm", "uri": "/homepage/templates/base.htm", "source_encoding": "utf-8", "line_map": {"18": 2, "20": 84, "22": 0, "42": 2, "47": 8, "48": 11, "49": 11, "50": 11, "51": 12, "52": 12, "53": 13, "54": 13, "55": 14, "56": 14, "57": 17, "58": 19, "59": 19, "60": 20, "61": 20, "66": 25, "67": 29, "68": 29, "69": 35, "70": 35, "71": 36, "72": 36, "73": 37, "74": 37, "79": 40, "80": 41, "81": 42, "82": 53, "83": 54, "84": 56, "89": 65, "94": 69, "99": 73, "100": 79, "101": 79, "102": 84, "108": 8, "119": 25, "130": 38, "136": 38, "142": 63, "148": 63, "154": 68, "160": 68, "166": 72, "172": 72, "178": 172}}
 __M_END_METADATA
 """

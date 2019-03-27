@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1552493909.8648205
+_modified_time = 1553646993.002376
 _enable_loop = True
 _template_filename = 'C:/Users/PC/sprint1/catalog/templates/product.html'
 _template_uri = 'product.html'
@@ -30,10 +30,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def site_center():
-            return render_site_center(context._locals(__M_locals))
+        form = context.get('form', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         product = context.get('product', UNDEFINED)
+        def site_center():
+            return render_site_center(context._locals(__M_locals))
         self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n')
@@ -50,13 +51,14 @@ def render_body(context,**pageargs):
 def render_site_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def site_center():
-            return render_site_center(context)
+        form = context.get('form', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         product = context.get('product', UNDEFINED)
+        def site_center():
+            return render_site_center(context)
         self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n    <h1 class="text-center">Products</h1>\r\n\r\n        <div id="catalog" class="center-div">\r\n        \r\n            <div class="product-tile">\r\n                <div class="product-image"><img class="tile-image" src="')
+        __M_writer('\r\n    <h1 class="text-center">Products</h1>\r\n\r\n        <div id="catalog" class="row col-md-12">\r\n        \r\n            <div class="product-tile col-md-4 offset-md-2">\r\n                <div class="product-image"><img class="tile-image" src="')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( STATIC_URL ))
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( product.image_url() ))
         __M_writer('"></img></div>\r\n                <div class="product-name">')
@@ -65,7 +67,11 @@ def render_site_center(context,**pageargs):
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( product.price ))
         __M_writer('</div>\r\n                <div class="product-name">')
         __M_writer(django_mako_plus.ExpressionPostProcessor(self)( product.description ))
-        __M_writer('</div>\r\n            </div>\r\n            <div>\r\n')
+        __M_writer('</div>\r\n                <div class="product-quantity">Remaining quantity: ')
+        __M_writer(django_mako_plus.ExpressionPostProcessor(self)( product.quantity ))
+        __M_writer('</div>\r\n            </div>\r\n            <div class="col-md-4">\r\n            </br></br></br></br></br></br></br></br>\r\n                <form method="post">\r\n                    <table>\r\n                        ')
+        __M_writer(django_mako_plus.ExpressionPostProcessor(self)( form.as_table() ))
+        __M_writer('\r\n                    </table>\r\n                    <input type="submit" value="Buy Now">\r\n                </form>\r\n                \r\n            </div>\r\n            <div class="col-md-8 offset-md-2">\r\n')
         for url in product.image_urls():
             __M_writer('                    <img class="small-image" src="')
             __M_writer(django_mako_plus.ExpressionPostProcessor(self)( STATIC_URL ))
@@ -79,6 +85,6 @@ def render_site_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/PC/sprint1/catalog/templates/product.html", "uri": "product.html", "source_encoding": "utf-8", "line_map": {"29": 0, "39": 1, "44": 22, "50": 3, "59": 3, "60": 9, "61": 9, "62": 9, "63": 10, "64": 10, "65": 11, "66": 11, "67": 12, "68": 12, "69": 15, "70": 16, "71": 16, "72": 16, "73": 16, "74": 18, "80": 74}}
+{"filename": "C:/Users/PC/sprint1/catalog/templates/product.html", "uri": "product.html", "source_encoding": "utf-8", "line_map": {"29": 0, "40": 1, "45": 33, "51": 3, "61": 3, "62": 9, "63": 9, "64": 9, "65": 10, "66": 10, "67": 11, "68": 11, "69": 12, "70": 12, "71": 13, "72": 13, "73": 19, "74": 19, "75": 26, "76": 27, "77": 27, "78": 27, "79": 27, "80": 29, "86": 80}}
 __M_END_METADATA
 """

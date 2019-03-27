@@ -3,15 +3,26 @@
 <%block name="site_center">
     <h1 class="text-center">Products</h1>
 
-        <div id="catalog" class="center-div">
+        <div id="catalog" class="row col-md-12">
         
-            <div class="product-tile">
+            <div class="product-tile col-md-4 offset-md-2">
                 <div class="product-image"><img class="tile-image" src="${ STATIC_URL }${ product.image_url() }"></img></div>
                 <div class="product-name">${ product.name }</div>
                 <div class="product-price">$${ product.price }</div>
                 <div class="product-name">${ product.description }</div>
+                <div class="product-quantity">Remaining quantity: ${ product.quantity }</div>
             </div>
-            <div>
+            <div class="col-md-4">
+            </br></br></br></br></br></br></br></br>
+                <form method="post">
+                    <table>
+                        ${ form.as_table() }
+                    </table>
+                    <input type="submit" value="Buy Now">
+                </form>
+                
+            </div>
+            <div class="col-md-8 offset-md-2">
                 %for url in product.image_urls():
                     <img class="small-image" src="${ STATIC_URL }${ url }"></img>
                 %endfor

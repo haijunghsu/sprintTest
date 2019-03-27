@@ -4,7 +4,7 @@
 }
 
 .product-tile{
-    height: 375px;
+    height: 400px;
     width: 300px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -12,16 +12,20 @@
 }
 .product-price{
     bottom:0;
-    text-align: center;
+    // text-align: center;
     color: black;
 }
 .product-name{
-    text-align: center;
+    // text-align: center;
+    color: black;
+}
+.product-quantity{
+    // text-align: center;
     color: black;
 }
 .tile-image{
     height: 300px;
-    widows: 300px;
+    width: 100%;
 }
 
 .small-image{
