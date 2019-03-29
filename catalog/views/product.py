@@ -40,10 +40,10 @@ class QuantityForm(forms.Form):
     purchase_quantity = forms.CharField(help_text = "Enter your quantity")
 
     #create a clean method
-    # def clean(self):
+    def clean(self):
+        return 0
 
     #     username = self.cleaned_data.get('username')
-    #     password = self.cleaned_data.get('password')
 
     #     self.user = authenticate(username = username, password = password)
 
