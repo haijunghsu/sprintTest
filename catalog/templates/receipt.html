@@ -1,0 +1,44 @@
+<%inherit file ="app_base.htm" />
+
+<%block name = "site_center">
+
+<h1>Receipt</h1>
+<table>
+    <tr>
+    <th></th>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Extended</th>
+    <th>Actions</th>
+    </tr>
+    %for si in saleitems:
+        <tr>
+         <td>
+                <img id="product_image" src="${ STATIC_URL }${ si.product.image_url() }" alt="${ si.product.name | h}" />
+            </td>
+            <td>
+                ${ si.product.name }
+            </td>
+            <td>
+                ${ si.quantity }
+            </td>
+            <td>
+                ${ si.product.price * si.quantity }
+            </td>
+        </tr>
+    %endfor
+    <tr>
+        <td>Subtotal</td>
+        <td>${sale.subtotal}</td>
+    </tr>
+    <tr>
+        <td>Tax</td>
+        <td>${sale.tax}</td>
+    </tr>
+    <tr>
+    <td>Total</td>
+        <td>${sale.total}</td>
+    </tr>
+</table>
+</%block>

@@ -1,5 +1,8 @@
 from django.db import models
 from decimal import Decimal
+from datetime import datetime
+from django.conf import settings
+import stripe
 
 # Create your models here.
 class Category(models.Model):
@@ -52,9 +55,11 @@ class Sale(models.Model):
     charge_id = models.TextField(null=True, default=None)   # successful charge id from stripe
 
     def recalculate(self):
-        #'''Recalculates the subtotal, tax, and total fields. Does not save the object.'''
-        # complete this method!
-        return 0
+        self.subtotal = 0
+        for si in SaleItem.objects.filter(sale = self, status = 'A'):
+            self.subtotal += si.quantity * si.price
+        self.tax = self.subtotal * TAX_RATE
+        self.total = self.subtotal + self.tax
 
     def finalize(self, stripeToken):
         #'''Finalizes the sale'''
@@ -62,13 +67,29 @@ class Sale(models.Model):
         # Ensure this sale isn't already finalized (purchased should be None)
         if self.purchased is not None:
             raise ValueError('this sales has already been finalized')
+        for si in SaleItem.objects.filter(sale = self, status = 'A'):
+            if si.product.quantity < si.quantity:
+                raise ValueError(si.product.name + 'only has' + si.product.quantity + 'in stock')
+        self.recalculate()
+
+        charge = stripe.Charge.create(
+            amount = int(self.total * Decimal('100.0')),
+            currency = 'usd',
+            description = 'Example Charge',
+            source = stripeToken,
+        )
+        self.purchased = datetime.now()
+        self.charge_id = charge['id']
+        self.save()
+        for si in SaleItem.objects.filter(sale=self, status = 'A'):
+            si.product.quantity -= si.quantity
+            si.product.save()
         # Check product quantities one more time
         # Call recalculate one more time
         # Create a charge using the `stripeToken` (https://stripe.com/docs/charges)
             # be sure to pip install stripe and import stripe into this file
         # Set purchased=now and charge_id=the id from Stripe
         # Save
-        return 0
 
 
 class SaleItem(models.Model):

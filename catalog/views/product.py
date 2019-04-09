@@ -13,12 +13,17 @@ def process_request(request, product:cmod.Product):
 
     if request.method == 'POST':    
         form = QuantityForm(request.POST)
+        form.Product = product
+        form.user = request.user
+
+        if request.user.is_authenticated:
+    
         # Check if the form is valid:
-        if form.is_valid():
-            # login(request, form.user)
-            #get_user_shopping cart
-            #make new sale item
-            return HttpResponseRedirect('/catalog/cart/')
+            if form.is_valid():
+                form.commit()
+                return HttpResponseRedirect('/catalog/cart')
+        else:
+            return HttpResponseRedirect('/account/login')
     else:
         form = QuantityForm()
 
@@ -37,17 +42,28 @@ def tile(request, product:cmod.Product):
 
 
 class QuantityForm(forms.Form):
-    purchase_quantity = forms.CharField(help_text = "Enter your quantity")
+    quantity = forms.IntegerField(label = "Quantity")
 
     #create a clean method
     def clean(self):
-        return 0
+        if self.user.is_authenticated:
+            if self.cleaned_data.get('quantity') > self.Product.quantity:
+                raise forms.ValidationError("Low inventory!")
+        return self.cleaned_data
+    
+    def commit(self):
+        cart = self.user.get_shopping_cart()
+        saleitem = cmod.SaleItem.objects.filter(sale = cart, product = self.Product, status = 'A').first()
 
-    #     username = self.cleaned_data.get('username')
+        if saleitem is None:
+            saleitem = cmod.SaleItem()
+            saleitem.sale = cart
+            saleitem.product = self.Product
+            saleitem.price = self.Product.price
+            saleitem.quantity = self.cleaned_data.get('quantity')
+        else:
+            saleitem.quantity += self.cleaned_data.get('quantity')
 
-    #     self.user = authenticate(username = username, password = password)
-
-    #     if self.user is not None:
-    #         return self.cleaned_data
-    #     else:
-    #         raise forms.ValidationError('your username or password is not correct')
+        saleitem.save()
+        cart.recalculate()
+        cart.save()
